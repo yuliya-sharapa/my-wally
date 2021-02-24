@@ -1,24 +1,23 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import Operation from './Operation'
 
 function OperationsList() {
+    const [operations, setOperations] = useState([]);
+    useEffect(()=>{
+        setOperations([
+            {id:1, name: "grocery", amount: 100, date: "12/12/12"},
+            {id:2, name: "farmacy", amount: 103, date: "13/12/12"},
+            {id:3, name: "vet", amount: 300, date: "12/12/12"}
+        ])
+    }, [])
     return (
         <table className="table mt-3">
             <tbody>
-                <tr className="table-success">
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>20/12/12</td>
-                </tr>
-                <tr className="table-danger">
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                </tr>
-                <tr className="table-danger">
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                </tr>
+            {
+                operations.map(operation => (
+                    <Operation key={operation.id} operation={operation} />
+                ))
+            }
             </tbody>
         </table>
     )

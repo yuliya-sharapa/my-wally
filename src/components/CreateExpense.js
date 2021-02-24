@@ -1,24 +1,19 @@
-import React from 'react'; 
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
-import { useForm } from 'react-hook-form'; 
 
-function IncomeExpenseForm ({operation, onSubmit}) {
-    const {register, handleSubmit} = useForm({
-        defaultValues: {
-            name: operation ? operation.name : "",
-            amount: operation ? operation.amount : "",
-            date: operation ? operation.date : ""
-        },
-    });
+function CreateExpense() {
+    const {register, handleSubmit} = useForm();
     const history = useHistory();
 
-    const submitHandler = handleSubmit((data)=>{
-        onSubmit(data);
-        history.push("/operations");
+    const onSubmit = handleSubmit(data => {
+        //data.amount= -data.amount;
+        alert(JSON.stringify(data))
+        history.push("/operations")
     });
 
     return (
-        <form onSubmit={submitHandler}>
+        <form onSubmit={onSubmit}>
             <div className="form-row mt-3">
                 <div className="col-5">
                     <input ref={register} name="name" type="text" className="form-control" placeholder="Name" />
@@ -37,4 +32,4 @@ function IncomeExpenseForm ({operation, onSubmit}) {
     )
 }
 
-export default IncomeExpenseForm
+export default CreateExpense
