@@ -7,7 +7,8 @@ function IncomeExpenseForm ({operation, onSubmit}) {
         defaultValues: {
             name: operation ? operation.name : "",
             amount: operation ? operation.amount : "",
-            date: operation ? operation.date : ""
+            date: operation ? operation.date : "",
+            category: operation ? operation.category : "",
         },
     });
     const history = useHistory();
@@ -20,17 +21,26 @@ function IncomeExpenseForm ({operation, onSubmit}) {
     return (
         <form onSubmit={submitHandler}>
             <div className="form-row mt-3">
-                <div className="col-5">
+                <div className="col-3">
                     <input ref={register} name="name" type="text" className="form-control" placeholder="Name" />
                 </div>
                 <div className="col-2">
                     <input ref={register} name="amount" type="number" className="form-control" placeholder="Amount" />
                 </div>
+                <div className="col-2">
+                    <select ref={register} className="form-control" name="category">
+                        <option>Food</option>
+                        <option>Health</option>
+                        <option>Pets</option>
+                        <option>Taxes</option>
+                        <option>Leisure</option>
+                    </select>
+                </div>
                 <div className="col-3">
                     <input ref={register} name="date" type="date" className="form-control" placeholder="Date" />
                 </div>
                 <div className="col-2">
-                    <button type="submit" className="btn btn-secondary">Add</button>
+                    <button type="submit" className="btn btn-secondary">Save</button>
                 </div>
             </div>
         </form>

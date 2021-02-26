@@ -1,14 +1,22 @@
-import React from 'react'
+import React, {useEffect} from 'react';
+import Balance from './Balance'
 
-function Header() {
+function Header({balance, setBalance, operations}) {
+
+    useEffect(() => {
+		let temp = 0;
+		for(let i = 0; i < operations.length; i++) {
+      operations[i].type ?
+      temp += parseInt(operations[i].amount) :
+      temp -= parseInt(operations[i].amount)
+		}
+		setBalance(temp);
+	}, [operations]);
+
     return (
         <header className="row mt-3 align-items-center">
             <h2 className="col-10">My Wally</h2>
-            <div className="col-2 card">
-                <h3 className="card-body p-1">
-                    Balance
-                </h3>
-            </div>
+            <Balance balance={balance}/>
         </header>
     )
 }

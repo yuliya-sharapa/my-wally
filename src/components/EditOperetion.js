@@ -8,6 +8,7 @@ function EditOperetion() {
         setOperation({
             name: "test",
             amount: 12,
+            category: "Health", 
             date: "2012-12-12"
         })
     }, []);
@@ -20,7 +21,7 @@ function EditOperetion() {
         <div className="container">
             <div className="mt-3">
                 <h3>Edit an operation</h3>
-                <IncomeExpenseForm operation={operation} />
+                <IncomeExpenseForm operation={operation} onSubmit={onSubmit} />
             </div>
         </div>
     ) : (
