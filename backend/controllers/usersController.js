@@ -49,8 +49,17 @@ let usersController = {
                 name,
                 lastName
             });
-
-            res.status(201).json(newUser);
+            
+            //sign the token
+            const token = jwt.sign({
+                user: newUser.id,
+            }, process.env.JWT_SECRET);
+            
+            //send the token in a http-only cookie
+            res.cookie("token", token, {
+                httpOnly: true,
+            }).send();
+            
         } catch (error) {
             res.status(500).json({message : error.message});
         }
