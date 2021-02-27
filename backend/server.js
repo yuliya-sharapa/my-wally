@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require("cors");
-const operationsRouter = require('./routes/operations.js')
+const operationsRouter = require('./routes/operations.js');
+const usersRouter = require('./routes/users.js');
 
 const app = express();
 app.use(express.json());
@@ -12,9 +13,7 @@ app.listen(PORT, ()=>{
     console.log(`The server has started on port ${PORT}`);
 })
 
-app.get('/', (req,res)=> {
-    res.send('Hello world')
-})
 //set up routes
+app.use('/users', usersRouter);
 app.use('/operations', operationsRouter);
 

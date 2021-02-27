@@ -31,5 +31,15 @@ module.exports = (sequelize, DataTypes) => {
     
     const Operation = sequelize.define(alias, cols, config) ;
 
-    return Operation
+    Operation.associate = (models) => {
+        Operation.belongsTo(models.Category, {
+            as: "category"
+        });
+        Operation.belongsTo(models.User, {
+            as: "user"
+        })
+    }
+
+
+    return Operation;
 }

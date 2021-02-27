@@ -1,44 +1,35 @@
 let db = require('../database/models')
 
-let operationsController = {
+let usersController = {
     listAll: async (req,res) => {
         try {
-            const operations = await db.Operation.findAll({
-                include: [
-                    {model: db.User, as: "user"},
-                    {model: db.Category, as: "category"},
-                ], 
-                limit: 10, 
-                order: [['date', 'DESC']] 
-            });
-            res.json(operations);
+            const users = await db.User.findAll({include: [{model: db.Operation, as: "operations"}]});
+            res.json(users);
         } catch (error) {
             res.status(500).json({message : error.message});
         }
     },
     getById: async (req,res) => {
         try {
-            const operation = await db.Operation.findByPk(req.params.id);
-            res.json(operation);
+            const user = await db.User.findByPk(req.params.id, {include: [{model: db.Operation, as: "operations"}]});
+            res.json(user);
         } catch (error) {
             res.status(500).json({message : error.message});
         }
     },
     /* create: async (req,res) => {
         try {
-            await db.Operation.create({
+            await db.User.create({
                 name: req.body.name,
                 amount: req.body.amount,
                 date: req.body.date,
                 type: req.body.type,
-                categoryId: req.body.category
-
             });
             res.send("ok");
         } catch (error) {
             res.status(500).json({message : error.message});
         }
-    },  */
+    }, */
 }
 
-module.exports = operationsController;
+module.exports = usersController;
