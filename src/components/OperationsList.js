@@ -1,9 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import Balance from './Balance';
 import Operation from './Operation';
 import OperationOptions from "./OperationOptions";
 
-function OperationsList({operations, setOperations}) {
+function OperationsList() {
+    
+    const [operations, setOperations] = useState([]);
+    const [balance, setBalance] = useState(0);
+    
     const history = useHistory();
 
     useEffect(()=>{
@@ -23,6 +28,7 @@ function OperationsList({operations, setOperations}) {
 
     return (
         <>
+        <Balance operations={operations} balance={balance} setBalance={setBalance} />
         <OperationOptions/>
         <table className="table mt-3">
             <thead>

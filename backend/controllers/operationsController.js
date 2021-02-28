@@ -1,4 +1,5 @@
-let db = require('../database/models')
+const db = require('../database/models');
+
 
 let operationsController = {
     listAll: async (req,res) => {
@@ -8,6 +9,7 @@ let operationsController = {
                     {model: db.User, as: "user"},
                     {model: db.Category, as: "category"},
                 ], 
+                where: {userId: req.userId},
                 limit: 10, 
                 order: [['date', 'DESC']] 
             });

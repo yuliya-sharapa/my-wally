@@ -5,17 +5,21 @@ import OperationsList from "./components/OperationsList"
 import EditOperation from "./components/EditOperetion"
 import CreateIncome from "./components/CreateIncome"
 import CreateExpense from "./components/CreateExpense"
+import Home from "./components/Home"
+import Login from "./components/Login"
+import Register from "./components/Register"
 
 function App() {
-  const [operations, setOperations] = useState([]);
-  const [balance, setBalance] = useState(0);
 
   return (
     <div className="container">
-    <Header balance={balance} setBalance={setBalance} operations={operations} />
+    <Header  />
     <Switch>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/register" component={Register} />
+      <Route exact path="/login" component={Login} />
       <Route exact path="/operations">
-        <OperationsList operations={operations} setOperations={setOperations} />
+        <OperationsList  />
       </Route>
       <Route path="/operations/edit/:id" component={EditOperation}/>
       <Route path="/operations/createIncome" component={CreateIncome}/>

@@ -1,22 +1,13 @@
-import React, {useEffect} from 'react';
-import Balance from './Balance'
+import React from 'react';
+import {Link} from 'react-router-dom'
 
-function Header({balance, setBalance, operations}) {
-
-    useEffect(() => {
-		let temp = 0;
-		for(let i = 0; i < operations.length; i++) {
-      operations[i].type ?
-      temp += parseInt(operations[i].amount) :
-      temp -= parseInt(operations[i].amount)
-		}
-		setBalance(temp);
-	}, [operations]);
+function Header() {
 
     return (
         <header className="row mt-3 align-items-center">
-            <h2 className="col-10">My Wally</h2>
-            <Balance balance={balance}/>
+            <h2 className="col-9">My Wally</h2>
+            <Link to="/register" className="col-1">Register</Link>
+            <Link to="/login" className="col-2">Login</Link>
         </header>
     )
 }
