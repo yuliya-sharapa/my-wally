@@ -24,21 +24,23 @@ let operationsController = {
             res.status(500).json({message : error.message});
         }
     },
-    /* create: async (req,res) => {
+    create: async (req,res) => {
         try {
-            await db.Operation.create({
-                name: req.body.name,
-                amount: req.body.amount,
-                date: req.body.date,
-                type: req.body.type,
-                categoryId: req.body.category
+            const {name, amount, date, type, categoryId, userId} = req.body;
+            const newOperation = await db.Operation.create({
+                name,
+                amount,
+                date,
+                type,
+                categoryId,
+                userId
 
             });
-            res.send("ok");
+            res.json(newOperation);
         } catch (error) {
             res.status(500).json({message : error.message});
         }
-    },  */
+    },   
 }
 
 module.exports = operationsController;

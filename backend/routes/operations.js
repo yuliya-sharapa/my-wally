@@ -4,6 +4,6 @@ const operationsController = require("../controllers/operationsController");
 
 router.get('/', operationsController.listAll);
 router.get('/:id', operationsController.getById);
-//router.post('/create', operationsController.create);
+//router.post('/', operationsController.create);
 
 module.exports = router;

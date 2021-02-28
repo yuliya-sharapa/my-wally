@@ -66,11 +66,43 @@ let usersController = {
     },
     login: async (req,res) => {
         try {
+            const { email, password } = req.body;
+
+            //validation
+            if (!email || !password)
+            return res.status(400).json({ msg: "Not all fields have been entered." });
             
+            const existingUser = await db.User.findOne({ where: {email: email} });
+            //console.log(existingUser)
+            if (!existingUser)
+            return res
+            .status(400)
+            .json({ msg: "Wrong email or password" });
+
+            const passwordCorrect = await bcrypt.compare(password, existingUser.password);
+            if (!passwordCorrect)
+            return res
+            .status(400)
+            .json({ msg: "Wrong email or password" });
             
+            //sign the token
+            const token = jwt.sign({
+                user: existingUser.id,
+            }, process.env.JWT_SECRET);
+            
+            //send the token in a http-only cookie
+            res.cookie("token", token, {
+                httpOnly: true,
+            }).send();
         } catch (error) {
-            
+            res.status(500).json({message : error.message});
         }
+    },
+    logout: (req,res) => {
+        res.cookie("token", "", {
+            httpOnly: true,
+            expires: new Date(0)
+        }).send(); 
     },
 
 }
