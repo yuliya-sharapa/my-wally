@@ -34,13 +34,12 @@ let operationsController = {
                 type,
                 categoryId,
                 userId
-
             });
             res.json(newOperation);
         } catch (error) {
             res.status(500).json({message : error.message});
         }
-    },   
+    },
 }
 
 module.exports = operationsController;
