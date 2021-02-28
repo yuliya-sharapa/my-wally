@@ -9,8 +9,7 @@ function Register() {
     const onSubmit = async (data)=>{
         console.log(JSON.stringify(data));
         try {
-            const registeredData = data;
-            await axios.post('http://localhost:5000/auth/', registeredData)
+            await axios.post('http://localhost:5000/auth/', data)
         } catch (error) {
             console.error(error)
         }
