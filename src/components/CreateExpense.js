@@ -1,11 +1,12 @@
 import React from 'react';
-import IncomeExpenseForm from './IncomeExpenseForm'
+import axios from 'axios';
+import IncomeExpenseForm from './IncomeExpenseForm';
 
 function CreateExpense() {
 
-    const onSubmit = data => {
+    const onSubmit = async (data) => {
         data.type = false;
-        alert(JSON.stringify(data))
+        await axios.post("http://localhost:5000/operations/", data)
     };
 
     return (

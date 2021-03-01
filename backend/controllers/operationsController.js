@@ -26,9 +26,14 @@ let operationsController = {
             res.status(500).json({message : error.message});
         }
     },
-    create: async (req,res) => {
+    create: async (req, res) => {
         try {
-            const {name, amount, date, type, categoryId, userId} = req.body;
+            const user = await db.User.findOne({
+                where: {id: req.userId}
+            })
+            //const userId = req.body.userId;
+            const userId = user.id;
+            const {name, amount, date, type, categoryId} = req.body;
             const newOperation = await db.Operation.create({
                 name,
                 amount,
@@ -38,6 +43,17 @@ let operationsController = {
                 userId
             });
             res.json(newOperation);
+        } catch (error) {
+            res.status(500).json({message : error.message});
+        }
+    },
+    remove: async (req,res) => {
+        try {
+            await db.Operation.destroy(
+                { where: 
+                    {id:req.params.id}
+                });
+            res.send("ok");
         } catch (error) {
             res.status(500).json({message : error.message});
         }

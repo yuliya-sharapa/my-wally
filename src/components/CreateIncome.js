@@ -1,11 +1,18 @@
+import axios from 'axios';
 import React from 'react';
 import IncomeExpenseForm from './IncomeExpenseForm'
 
 function CreateIncome() {
 
-    const onSubmit = data => {
-        data.type = true;
-        alert(JSON.stringify(data))
+    const onSubmit = async(data) => {
+        try {
+            data.type = true;
+            //console.log(data)
+            await axios.post("http://localhost:5000/operations/", data)
+        } catch (error) {
+            console.error(error)
+        }
+        
     };
 
     return (

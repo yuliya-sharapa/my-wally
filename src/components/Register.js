@@ -1,15 +1,21 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useContext } from 'react';
 import {useForm} from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+import AuthContext from '../context/AuthContext';
 
 function Register() {
+    const {getLoggedIn} = useContext(AuthContext);
+
+    const history = useHistory();
 
     const {register, handleSubmit} = useForm();
 
     const onSubmit = async (data)=>{
-        console.log(JSON.stringify(data));
         try {
             await axios.post('http://localhost:5000/auth/', data)
+            await getLoggedIn();
+            history.push("/operations")
         } catch (error) {
             console.error(error)
         }

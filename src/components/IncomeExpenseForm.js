@@ -28,12 +28,15 @@ function IncomeExpenseForm ({operation, onSubmit}) {
                     <input ref={register} name="amount" type="number" className="form-control" placeholder="Amount" />
                 </div>
                 <div className="col-2">
-                    <select ref={register} className="form-control" name="category">
-                        <option>Food</option>
-                        <option>Health</option>
-                        <option>Pets</option>
-                        <option>Taxes</option>
-                        <option>Leisure</option>
+                    <select ref={register} className="form-control" name="categoryId">
+                        <option value="1">Food</option>
+                        <option value="2">Health</option>
+                        <option value="3">Leisure</option>
+                        <option value="4">Taxes</option>
+                        <option value="5">Pets</option>
+                        <option value="6">Car</option>
+                        <option value="11">Salary</option>
+                        <option value="12 ">Present</option>
                     </select>
                 </div>
                 <div className="col-3">
