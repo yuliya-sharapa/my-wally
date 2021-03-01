@@ -1,4 +1,3 @@
-# Dillinger
 # My Wally - Simple expense tracker 
 
 **Create your account and add your incomes and expenses to manage your wallet better.
