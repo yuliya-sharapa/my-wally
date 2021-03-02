@@ -18,3 +18,24 @@ Frontend:
 - React Hook Form (form managing)
 - React Context (sharing logged in user data with other components)
 - Axios (http requests to server)
+
+### Installation
+
+```sh
+$ npm install
+$ npm start
+// execute budjet.sql (backend->database->budget.sql)
+// open a new terminal
+$ cd backend
+$ npm install
+$ npm run dev
+```
+
+### Default User Access
+```sh
+email: user@gmail.com
+password: user@H@H
+```
+
+
+**Happy to any feedback on the project!**
