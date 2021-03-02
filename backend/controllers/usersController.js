@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 let usersController = {
     listAll: async (req,res) => {
         try {
-            const users = await db.User.findAll({include: [{model: db.Operation, as: "operations"}]});
+            const users = await db.User.findAll();
             res.json(users);
         } catch (error) {
             res.status(500).json({message : error.message});
@@ -13,7 +13,7 @@ let usersController = {
     },
     getById: async (req,res) => {
         try {
-            const user = await db.User.findByPk(req.params.id, {include: [{model: db.Operation, as: "operations"}]});
+            const user = await db.User.findByPk(req.params.id);
             res.json(user);
         } catch (error) {
             res.status(500).json({message : error.message});

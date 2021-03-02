@@ -15,22 +15,11 @@ function OperationsList() {
     const getOperations = async () => {
         const operationsRes = await axios.get("http://localhost:5000/operations/");
         const data = operationsRes.data;
-        setOperations(data)
-    }
-
-    const updateTheBalance = () => {
-        let temp = 0;
-		for(let i = 0; i < operations.length; i++) {
-            operations[i].type ?
-            temp += parseInt(operations[i].amount) :
-            temp -= parseInt(operations[i].amount)
-		}
-		setBalance(temp);
+        setOperations(data);
     }
 
     useEffect(()=>{
         getOperations();
-        updateTheBalance()
     }, [])
 
     const onDelete = async (id) => {
@@ -40,8 +29,8 @@ function OperationsList() {
     }
 
     return (
-        <>
-        <Balance balance={balance}  />
+        <div className="mx-auto p-5" style={{maxWidth: 680}}>
+        <Balance balance={balance} setBalance={setBalance}  operations={operations} />
         <OperationOptions/>
         <table className="table mt-3">
             <thead>
@@ -57,7 +46,7 @@ function OperationsList() {
             <Operations operations={operations} onDelete={onDelete}/>
             
         </table>
-        </>
+        </div>
     )
 }
 

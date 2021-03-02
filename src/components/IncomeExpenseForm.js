@@ -1,25 +1,22 @@
 import React from 'react'; 
-import { useHistory } from 'react-router-dom';
-import { useForm } from 'react-hook-form'; 
+import { useForm } from 'react-hook-form';
 
 function IncomeExpenseForm ({operation, onSubmit}) {
     const {register, handleSubmit} = useForm({
         defaultValues: {
             name: operation ? operation.name : "",
             amount: operation ? operation.amount : "",
+            category: operation ? operation.category.name : "",
             date: operation ? operation.date : "",
-            category: operation ? operation.category : "",
         },
     });
-    const history = useHistory();
 
     const submitHandler = handleSubmit((data)=>{
         onSubmit(data);
-        history.push("/operations");
     });
 
     return (
-        <form onSubmit={submitHandler}>
+        <form onSubmit={submitHandler} >
             <div className="form-row mt-3">
                 <div className="col-3">
                     <input ref={register} name="name" type="text" className="form-control" placeholder="Name" />
@@ -36,7 +33,7 @@ function IncomeExpenseForm ({operation, onSubmit}) {
                         <option value="5">Pets</option>
                         <option value="6">Car</option>
                         <option value="11">Salary</option>
-                        <option value="12 ">Present</option>
+                        <option value="12">Present</option>
                     </select>
                 </div>
                 <div className="col-3">

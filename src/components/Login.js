@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { UserLoginSchema } from '../validations/UserValidation';
 import { Link, useHistory } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 
@@ -9,7 +11,9 @@ function Login() {
 
   const history = useHistory();
 
-  const {register, handleSubmit} = useForm(); 
+  const {register, handleSubmit, errors} = useForm({
+    resolver: yupResolver(UserLoginSchema)
+}); 
 
   const onSubmit = async (data)=>{
       console.log(JSON.stringify(data));
@@ -34,7 +38,7 @@ function Login() {
                       type="text"
                       placeholder="Email"
                       />
-                    
+                  {errors.email && <small className="form-text text-muted">{errors.email.message}</small>}
                 </div>
                 <div className="form-group">
                     <input 
@@ -44,12 +48,12 @@ function Login() {
                       type="password"
                       placeholder="Password"
                     />
-                    
+                    {errors.password && <small className="form-text text-muted">{errors.password.message}</small>}
                 </div>
                 <div className="form-group">
                     <button type="submit" className="btn btn-primary btn-block font-weight-bold">Log in</button>
                 </div>
-                <span>Have an account?</span><Link to="/register" className="col-1">Register</Link>    
+                <span>Don't have an account?</span><Link to="/register" className="col-1">Register</Link>    
             </form>
         </div>
       );

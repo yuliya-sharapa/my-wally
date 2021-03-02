@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React, { useContext } from 'react';
 import {useForm} from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { UserSchema } from '../validations/UserValidation'; 
+import { useHistory, Link } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 
 function Register() {
@@ -9,7 +11,9 @@ function Register() {
 
     const history = useHistory();
 
-    const {register, handleSubmit} = useForm();
+    const {register, handleSubmit, errors} = useForm({
+        resolver: yupResolver(UserSchema),
+    });
 
     const onSubmit = async (data)=>{
         try {
@@ -35,7 +39,7 @@ function Register() {
                 name="name"
                 type="text"
             />
-        
+        {errors.name && <small class="form-text text-muted">{errors.name.message}</small>}
         </div>
         
         <div className="form-group">
@@ -46,7 +50,7 @@ function Register() {
             name="lastName"
             type="text"
         />
-        
+        {errors.lastName && <small class="form-text text-muted">{errors.lastName.message}</small>}
         </div>
 
         <div className="form-group">
@@ -57,7 +61,7 @@ function Register() {
             name="email"
             type="text"
         />
-        
+        {errors.email && <small class="form-text text-muted">{errors.email.message}</small>}
         </div>
 
         <div className="form-group">
@@ -68,13 +72,14 @@ function Register() {
             name="password"
             type="password"
         />
-        
+        {errors.password && <small class="form-text text-muted">{errors.password.message}</small>}
         </div>
 
         
         <div className="form-group">
         <button type="submit" className="btn btn-primary btn-block font-weight-bold">Submit</button>
         </div>
+        <span>Have an account?</span><Link to="/login" className="col-1">Login</Link> 
     </form>
 )
 }

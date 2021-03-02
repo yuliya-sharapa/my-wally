@@ -16,7 +16,7 @@ function LogOut() {
     }
 
     return (
-        <button onClick={logOut} className="btn btn-outline-secondary mr-1">
+        <button onClick={logOut} className="btn btn-outline-secondary align-self-end">
             Log Out
         </button>
     )
