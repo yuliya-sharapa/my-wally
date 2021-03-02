@@ -3,6 +3,8 @@
 **Create your account and add your incomes and expenses to manage your wallet better.
 Check the balance to see if you can afford your next purchase.**
 
+<img src="https://github.com/yuliya-sharapa/my-wally/blob/master/src/assets/screenshot.JPG" width="575" height="300" />
+
 The application is done using SERN stack (SQL Express React Node). 
 Technologies used in the project:
 
