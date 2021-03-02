@@ -16,7 +16,6 @@ function Login() {
 }); 
 
   const onSubmit = async (data)=>{
-      console.log(JSON.stringify(data));
       try {
         await axios.post('http://localhost:5000/auth/login', data)
         await getLoggedIn();

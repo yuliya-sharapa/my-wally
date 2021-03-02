@@ -8,7 +8,6 @@ function CreateIncome() {
 
     const onSubmit = async(data) => {
             data.type = true;
-            //console.log(data)
             await axios.post("http://localhost:5000/operations/", data)
             history.push('/operations')
     };

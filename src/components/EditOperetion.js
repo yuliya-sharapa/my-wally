@@ -13,7 +13,6 @@ function EditOperetion() {
         const getOperation = async () => {
             const operation = await axios.get(`http://localhost:5000/operations/${match.params.id}`);
             setOperation(operation.data)
-            console.log(operation.data.category.name)
         }
         getOperation()
     }, []);
