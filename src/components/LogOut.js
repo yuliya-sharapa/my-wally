@@ -12,7 +12,7 @@ function LogOut() {
     const logOut = async() => {
         await axios.get("http://localhost:5000/auth/logout");
         await getLoggedIn();
-        history.push("/login")
+        history.push("/")
     }
 
     return (
